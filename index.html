@@ -520,52 +520,66 @@
     justify-content: center;
     padding: 32px;
   }
-  .gate-box { max-width: 440px; width: 100%; text-align: center; }
+  .gate-box {
+    max-width: 560px;
+    width: 100%;
+    text-align: left;
+  }
   .gate-brand {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-size: 14px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.3em;
+    font-weight: 600;
+    margin-bottom: 16px;
   }
   .gate-box h1 {
     font-family: 'Source Serif 4', Georgia, serif;
-    font-size: 38px;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    font-weight: 500;
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: var(--text);
   }
   .gate-sub {
     color: var(--muted);
-    font-size: 15px;
-    margin-bottom: 40px;
+    font-size: 16px;
+    margin-bottom: 32px;
     line-height: 1.6;
   }
-  .gate-form { display: flex; gap: 12px; margin-bottom: 16px; }
+  .gate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
   .gate-input {
-    flex: 1;
+    width: 100%;
     background: transparent;
     border: 1px solid var(--border);
-    padding: 14px 18px;
-    font-family: 'JetBrains Mono', Menlo, monospace;
-    font-size: 15px;
+    padding: 22px 24px;
+    font-family: 'Inter', 'JetBrains Mono', Menlo, monospace;
+    font-size: 17px;
     color: var(--text);
     outline: none;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
+    border-radius: 2px;
   }
-  .gate-input:focus { border-color: var(--accent); }
+  .gate-input::placeholder { color: #b5b1a4; }
+  .gate-input:focus { border-color: var(--text); }
   .gate-btn {
+    width: 100%;
     background: var(--text);
     color: var(--bg);
     border: none;
-    padding: 14px 28px;
+    padding: 22px 24px;
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     letter-spacing: 0.05em;
     cursor: pointer;
     transition: background 0.15s;
+    border-radius: 2px;
   }
   .gate-btn:hover { background: var(--accent); }
   .gate-error {
@@ -573,19 +587,12 @@
     font-size: 13px;
     min-height: 18px;
     letter-spacing: 0.02em;
-  }
-  .gate-hint {
-    margin-top: 40px;
-    font-size: 13px;
-    color: var(--muted);
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
+    margin-top: 4px;
   }
   body.locked .container { display: none; }
   body.unlocked .gate { display: none; }
   @media (max-width: 720px) {
-    .gate-form { flex-direction: column; }
-    .gate-box h1 { font-size: 28px; }
+    .gate-box h1 { font-size: 34px; }
   }
 </style>
 </head>
@@ -594,25 +601,21 @@
 <!-- GATE -->
 <div class="gate" id="gate">
   <div class="gate-box">
-    <div class="gate-brand">AI · 神笔</div>
-    <h1>输入兑换码,<br>进入 AI 神笔</h1>
-    <p class="gate-sub">
-      让分析这件事,对每一个业务同学都变快。<br>
-      请使用你拿到的兑换码激活访问权限。
-    </p>
+    <div class="gate-brand">ACCESS</div>
+    <h1>进入路演</h1>
+    <p class="gate-sub">本工具仅对授权用户开放,请输入访问码</p>
     <form class="gate-form" id="gate-form" autocomplete="off">
       <input
         type="text"
         class="gate-input"
         id="gate-input"
-        placeholder="输入兑换码"
+        placeholder="访问码"
         spellcheck="false"
         autofocus
       >
-      <button type="submit" class="gate-btn">解锁</button>
+      <button type="submit" class="gate-btn">验证并进入 →</button>
     </form>
     <div class="gate-error" id="gate-error"></div>
-    <p class="gate-hint">兑换码由回收业务团队发放。如需获取,请联系项目负责人。</p>
   </div>
 </div>
 <main class="page">
@@ -708,63 +711,68 @@
       </div>
     </div>
 
-    <div class="result-grid">
-      <div class="result-card">
-        <div class="big">450 行</div>
-        <div class="title">项目级 SQL</div>
-        <div class="body">720+ 流失用户 DMP 分析覆盖漏斗、品类分布、人群分层。</div>
+    <div class="demo-board" style="margin-top: 48px;">
+      <div class="prompt-card">
+        <div class="tag">业务闭环</div>
+        <div class="question"><div>第一次实验：按流失时间分 3 组，短信触达</div><div style="text-align:center; font-size:22px; line-height:1; margin:14px 0; color:#f1a27e;">↓</div><div>用 AI 神笔做流失时间 × 人群画像的数据交叉分析</div><div style="text-align:center; font-size:22px; line-height:1; margin:14px 0; color:#f1a27e;">↓</div><div>第二次实验：按流失时间 × 人群画像分 6 组，短信触达</div></div>
+        <div class="small">中间这一步过去要提数分排期 3-5 天，现在我自己用 skill 半天跑完，第二次实验的分群方案就是基于这次分析出来的。</div>
       </div>
-      <div class="result-card">
-        <div class="big">4 张</div>
-        <div class="title">结果 sheet</div>
-        <div class="body">大盘漏斗、大盘品类、未触达漏斗、未触达品类。</div>
-      </div>
-      <div class="result-card">
-        <div class="big">9 个</div>
-        <div class="title">人群分层</div>
-        <div class="body">按 DMP 人群包做细分，支撑召回复盘。</div>
-      </div>
-      <div class="result-card">
-        <div class="big">3 个坑</div>
-        <div class="title">自动避开</div>
-        <div class="body">桥表去重、实验包排除、短信全量表 dt 取最新分区。</div>
+
+      <div class="evidence">
+        <div class="evidence-grid" style="grid-template-columns: 1fr;">
+          <div class="shot">
+            <div class="shot-tag">触达用户</div>
+            <div class="shot-title">55 万 → 60 万</div>
+            <div class="shot-desc">两次实验触达量级相当，结果的提升不是靠加投入。</div>
+          </div>
+          <div class="shot">
+            <div class="shot-tag">增量订单</div>
+            <div class="shot-title">231 → 506 单（×2.2）</div>
+            <div class="shot-desc">同量级触达，订单规模翻倍以上。</div>
+          </div>
+          <div class="shot">
+            <div class="shot-tag">ROI</div>
+            <div class="shot-title">2.7 → 7.9（×2.9）</div>
+            <div class="shot-desc">每投 1 元，从回 2.7 元到回 7.9 元。</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section>
     <div class="eyebrow">03 现场演示</div>
-    <h2>从一句话，到能跑的 SQL，再到可用的业务判断</h2>
-    <p class="section-copy">演示问题不需要复杂，关键是让大家看到：普通 AI 只能生成“像 SQL 的 SQL”，加载 skill 后，AI 才知道转转真实表名和业务口径。</p>
+    <h2>从一句话，到真实可跑的 SQL</h2>
+    <p class="section-copy">现场播放一段录屏：自然语言需求 → AI 神笔读取 skill → 生成含真实表名和转转口径的 SQL → 粘到 Hive 直接跑通。</p>
 
     <div class="demo-board">
       <div class="prompt-card">
-        <div class="tag">自然语言需求</div>
-        <div class="question">昨天看过回收首页的用户里，有多少男性用户估价了组装机？</div>
-        <div class="small">后续补一句真实结论：拿到这个数后，我发现 ______，于是推动了 ______。</div>
+        <div class="tag">录屏演示</div>
+        <div class="question">▶ 视频占位<br><br>2 分钟加速版<br>（真实操作，无剪辑）</div>
+        <div class="small">录屏替换放这里。汇报现场直接播放，不讲技术细节，让评委看完整动作链条。</div>
       </div>
 
       <div class="evidence">
         <div class="evidence-grid">
           <div class="shot">
-            <div class="shot-tag">截图 01</div>
-            <div class="shot-title">AI神笔生成 SQL</div>
-            <div class="shot-desc">标出三表 JOIN、真实表名、性别标签、组装机品类 ID。</div>
+            <div class="shot-tag">Step 1</div>
+            <div class="shot-title">自然语言输入</div>
+            <div class="shot-desc">一句话描述需求，不需要写 SQL。</div>
           </div>
           <div class="shot">
-            <div class="shot-tag">截图 02</div>
-            <div class="shot-title">Hive 跑出结果</div>
-            <div class="shot-desc">证明 SQL 不是演示稿，是真实可跑、可拿数。</div>
+            <div class="shot-tag">Step 2</div>
+            <div class="shot-title">AI 神笔读取 skill</div>
+            <div class="shot-desc">自动调用真实表名、转转口径、踩坑规则。</div>
           </div>
           <div class="shot">
-            <div class="shot-tag">截图 03</div>
-            <div class="shot-title">结果带来的动作</div>
-            <div class="shot-desc">补真实业务判断：人群、品类、触达或页面策略调整。</div>
+            <div class="shot-tag">Step 3</div>
+            <div class="shot-title">生成可跑 SQL</div>
+            <div class="shot-desc">不是示意 SQL，是能直接粘到 Hive 的真实代码。</div>
           </div>
           <div class="shot">
-            <div class="shot-tag">录屏 01</div>
-            <div class="shot-title">2 分钟加速演示</div>
-            <div class="shot-desc">一句话 → 读 skill → 生成 SQL → Hive 出结果。</div>
+            <div class="shot-tag">Step 4</div>
+            <div class="shot-title">Hive 跑通拿数</div>
+            <div class="shot-desc">结果出来，一个完整的取数动作闭环。</div>
           </div>
         </div>
       </div>
@@ -845,23 +853,23 @@
 
   <section>
     <div class="eyebrow">06 价值</div>
-    <h2>这件事的价值，不是多写了几条 SQL，而是把数据验证变成了随手能做的事</h2>
+    <h2>这件事的价值，从一个人变快，到一群人一起把边界往外推</h2>
 
     <div class="value-grid">
       <div class="value-card">
-        <div class="kicker">对我自己</div>
-        <div class="title">想看就能先看</div>
-        <div class="body">过去很多小猜想会停在备忘录里，因为不确定值不值得提需求。现在我可以先用 30 分钟拿到方向性数据，再决定要不要继续深挖。</div>
+        <div class="kicker">第一层</div>
+        <div class="title">统一分析工作流</div>
+        <div class="body">skill 把工作流固化下来，不同维度的分析都按同一套方法跑。效率的基础，是所有人走同一条路。</div>
       </div>
       <div class="value-card">
-        <div class="kicker">对数分协作</div>
-        <div class="title">把低价值排队变少</div>
-        <div class="body">简单取数和初步验证我先自己完成，找数分时带着结果和更清楚的问题去沟通。数分资源可以更多花在复杂口径、实验设计和结论校准上。</div>
+        <div class="kicker">第二层</div>
+        <div class="title">个人资产变集体资产</div>
+        <div class="body">A 同学沉淀的口径，B 同学直接复用；B 同学发现的坑，C 同学不会再踩。从一个人的知识，变成团队的基础设施。</div>
       </div>
       <div class="value-card">
-        <div class="kicker">对团队沉淀</div>
-        <div class="title">经验不再只在某个人脑子里</div>
-        <div class="body">真实表名、标准口径、桥表去重、实验包排除、踩过的坑，都能沉淀进 skill。下一个同学不是从零开始，而是站在已经验证过的路径上继续做。</div>
+        <div class="kicker">第三层 · 最大的价值</div>
+        <div class="title">集体补漏，边界一直往外推</div>
+        <div class="body">当更多人在用，每个人的视角盲区都会被别人补上。skill 越用越全，分析越做越深。一个人再努力也有边界，一群人互相补漏，边界会一直往外推。</div>
       </div>
     </div>
   </section>
