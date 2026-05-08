@@ -508,9 +508,113 @@
     .step .time { grid-column: 2; }
     .hero-panel, .prompt-card, .replicate { padding: 22px; }
   }
+
+  /* GATE */
+  .gate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .gate-box { max-width: 440px; width: 100%; text-align: center; }
+  .gate-brand {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .gate-box h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 38px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .gate-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .gate-form { display: flex; gap: 12px; margin-bottom: 16px; }
+  .gate-input {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    font-family: 'JetBrains Mono', Menlo, monospace;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    letter-spacing: 0.05em;
+  }
+  .gate-input:focus { border-color: var(--accent); }
+  .gate-btn {
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    padding: 14px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .gate-btn:hover { background: var(--accent); }
+  .gate-error {
+    color: var(--accent);
+    font-size: 13px;
+    min-height: 18px;
+    letter-spacing: 0.02em;
+  }
+  .gate-hint {
+    margin-top: 40px;
+    font-size: 13px;
+    color: var(--muted);
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  body.locked .container { display: none; }
+  body.unlocked .gate { display: none; }
+  @media (max-width: 720px) {
+    .gate-form { flex-direction: column; }
+    .gate-box h1 { font-size: 28px; }
+  }
 </style>
 </head>
-<body>
+<body class="locked">
+
+<!-- GATE -->
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <div class="gate-brand">AI · 神笔</div>
+    <h1>输入兑换码,<br>进入 AI 神笔</h1>
+    <p class="gate-sub">
+      让分析这件事,对每一个业务同学都变快。<br>
+      请使用你拿到的兑换码激活访问权限。
+    </p>
+    <form class="gate-form" id="gate-form" autocomplete="off">
+      <input
+        type="text"
+        class="gate-input"
+        id="gate-input"
+        placeholder="输入兑换码"
+        spellcheck="false"
+        autofocus
+      >
+      <button type="submit" class="gate-btn">解锁</button>
+    </form>
+    <div class="gate-error" id="gate-error"></div>
+    <p class="gate-hint">兑换码由回收业务团队发放。如需获取,请联系项目负责人。</p>
+  </div>
+</div>
 <main class="page">
 
   <section class="hero">
@@ -790,5 +894,38 @@
   </section>
 
 </main>
+<script>
+  const CODE = 'ZZshenbi';
+  const STORAGE_KEY = 'shenbi-unlocked-v3';
+
+  const body = document.body;
+  const form = document.getElementById('gate-form');
+  const input = document.getElementById('gate-input');
+  const error = document.getElementById('gate-error');
+
+  function unlock() {
+    body.classList.remove('locked');
+    body.classList.add('unlocked');
+  }
+
+  if (localStorage.getItem(STORAGE_KEY) === '1') {
+    unlock();
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = input.value.trim();
+    if (val === CODE) {
+      localStorage.setItem(STORAGE_KEY, '1');
+      error.textContent = '';
+      unlock();
+    } else {
+      error.textContent = '兑换码不正确,请重试。';
+      input.focus();
+      input.select();
+    }
+  });
+</script>
+
 </body>
 </html>
