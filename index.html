@@ -896,7 +896,6 @@
 </main>
 <script>
   const CODE = 'ZZshenbi';
-  const STORAGE_KEY = 'shenbi-unlocked-v3';
 
   const body = document.body;
   const form = document.getElementById('gate-form');
@@ -908,15 +907,10 @@
     body.classList.add('unlocked');
   }
 
-  if (localStorage.getItem(STORAGE_KEY) === '1') {
-    unlock();
-  }
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const val = input.value.trim();
     if (val === CODE) {
-      localStorage.setItem(STORAGE_KEY, '1');
       error.textContent = '';
       unlock();
     } else {
