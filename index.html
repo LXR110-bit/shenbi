@@ -711,30 +711,39 @@
       </div>
     </div>
 
-    <div class="demo-board" style="margin-top: 48px;">
-      <div class="prompt-card">
-        <div class="tag">业务闭环</div>
-        <div class="question"><div>第一次实验：按流失时间分 3 组，短信触达</div><div style="text-align:center; font-size:22px; line-height:1; margin:14px 0; color:#f1a27e;">↓</div><div>用 AI 神笔做流失时间 × 人群画像的数据交叉分析</div><div style="text-align:center; font-size:22px; line-height:1; margin:14px 0; color:#f1a27e;">↓</div><div>第二次实验：按流失时间 × 人群画像分 6 组，短信触达</div></div>
-        <div class="small">中间这一步过去要提数分排期 3-5 天，现在我自己用 skill 半天跑完，第二次实验的分群方案就是基于这次分析出来的。</div>
+    <div style="margin-top: 48px;">
+      <div style="background:#1f292f; color:#f6f2e8; padding:40px 32px;">
+        <div style="color:#f1a27e; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:28px;">业务闭环</div>
+
+        <div style="display:grid; grid-template-columns: 1fr 40px 1.15fr 40px 1fr; align-items:stretch; gap:0;">
+          <div style="display:flex; flex-direction:column; justify-content:center; padding:22px 16px;">
+            <div style="font-family:'Noto Serif SC', Georgia, serif; font-size:20px; line-height:1.3; font-weight:700; color:#ffffff; margin-bottom:8px;">第一次实验</div>
+            <div style="font-size:15px; font-weight:400; color:#8d9196; line-height:1.55;">按流失时间分 3 组<br>短信触达</div>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:center; color:#f1a27e; font-size:26px; font-weight:700; opacity:0.5;">→</div>
+
+          <div style="background:#d97757; padding:22px 20px; border-radius:3px; box-shadow:0 10px 28px rgba(217,119,87,0.4); display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-family:'Noto Serif SC', Georgia, serif; font-size:21px; line-height:1.3; font-weight:700; color:#fff; margin-bottom:6px;">AI 神笔做分析</div>
+            <div style="font-size:15px; font-weight:400; color:#ffe4d4; line-height:1.55;">流失时间 × 人群画像<br>交叉分析</div>
+          </div>
+
+          <div style="display:flex; align-items:center; justify-content:center; color:#f1a27e; font-size:26px; font-weight:700; opacity:0.5;">→</div>
+          <div style="display:flex; flex-direction:column; justify-content:center; padding:22px 16px;">
+            <div style="font-family:'Noto Serif SC', Georgia, serif; font-size:20px; line-height:1.3; font-weight:700; color:#ffffff; margin-bottom:8px;">第二次实验</div>
+            <div style="font-size:15px; font-weight:400; color:#8d9196; line-height:1.55;">按流失时间 × 人群画像<br>分 6 组，短信触达</div>
+          </div>
+        </div>
       </div>
 
-      <div class="evidence">
-        <div class="evidence-grid" style="grid-template-columns: 1fr;">
-          <div class="shot">
-            <div class="shot-tag">触达用户</div>
-            <div class="shot-title">55 万 → 60 万</div>
-            <div class="shot-desc">两次实验触达量级相当，结果的提升不是靠加投入。</div>
-          </div>
-          <div class="shot">
-            <div class="shot-tag">增量订单</div>
-            <div class="shot-title">231 → 506 单（×2.2）</div>
-            <div class="shot-desc">同量级触达，订单规模翻倍以上。</div>
-          </div>
-          <div class="shot">
-            <div class="shot-tag">ROI</div>
-            <div class="shot-title">2.7 → 7.9（×2.9）</div>
-            <div class="shot-desc">每投 1 元，从回 2.7 元到回 7.9 元。</div>
-          </div>
+      <div style="background:#fffaf0; border:1px dashed #c9bca5; border-top:none; padding:36px 32px; text-align:center;">
+        <div style="color:var(--accent); font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;">中间这一步的提速</div>
+        <div style="font-family:'Noto Serif SC', Georgia, serif; font-size:36px; line-height:1.3; font-weight:700; color:var(--text);">
+          过去要提数分排期 <span style="color:var(--accent);">3-5 天</span>
+          <br>
+          现在我自己用 skill <span style="color:var(--accent);">半天</span>跑完
+        </div>
+        <div style="color:var(--muted); font-size:15px; margin-top:18px; line-height:1.6;">
+          第二次实验的分群方案，就是基于这次分析做出来的。
         </div>
       </div>
     </div>
